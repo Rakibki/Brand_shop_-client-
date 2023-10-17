@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/images/logo-light.png";
 import { CiLocationOn } from "react-icons/ci";
 import { AiFillPhone,  AiFillTwitterCircle, AiOutlineWhatsApp, AiFillGithub, AiOutlineMail } from "react-icons/ai";
 import {MdOutlineFacebook} from "react-icons/md";
+import { authContext } from "../../providers/AuthProvider";
 
 const Footer = () => {
+
   return (
     <footer className="footer p-10 bg-[#222222] text-white">
       <nav>
