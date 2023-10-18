@@ -5,29 +5,39 @@ import user from "../../assets/images/user.png";
 
 const Navber = () => {
   const navItems = (
-    <div className="flex flex-col lg:flex-row text-[#334155] text-base gap-5">
+    <div className="flex flex-col lg:flex-row text-[#334155] text-base gap-6">
       <NavLink
+        to={"/"}
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "font-semibold underline" : ""
+          isPending ? "pending" : isActive ? "font-semibold text-[#e03737]" : ""
         }
       >
         <li>Home</li>
       </NavLink>
-      <NavLink>
-        <li>Home</li>
+
+      <NavLink
+      to={"/addProduct"}
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "font-semibold text-[#e03737]" : ""
+        }
+      >
+        <li>Add Product</li>
       </NavLink>
-      <NavLink>
-        <li>Home</li>
-      </NavLink>
-      <NavLink>
-        <li>Home</li>
+
+      <NavLink
+      to={"/myCard"}
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "font-semibold text-[#e03737]" : ""
+        }
+      >
+        <li>My Cart</li>
       </NavLink>
     </div>
   );
 
   return (
-    <div className="px-6 py-2 md:px-10 lg:px-16">
-      <div className="navbar bg-base-100">
+    <div className="w-full ">
+      <div className="navbar px-6 py-2 md:px-10 lg:px-16 bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
