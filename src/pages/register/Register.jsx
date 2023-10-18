@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { authContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import auth from "../../firebase/firebase.confic";
+import swal from 'sweetalert';
+
 
 const Register = () => {
   const { createUser, loginWithGoogle, loginWithGithub } =
@@ -35,6 +37,11 @@ const Register = () => {
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photo,
+        });
+        swal({
+          title: "Good job!",
+          text: "Your account registration is successful",
+          icon: "success",
         });
         e.target.reset()
       })

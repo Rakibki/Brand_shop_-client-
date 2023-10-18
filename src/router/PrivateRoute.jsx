@@ -1,10 +1,15 @@
 import { useContext } from "react"
-import authContext from "../providers/AuthProvider"
 import { Navigate } from "react-router-dom"
+import { authContext } from "../providers/AuthProvider"
 
 const PrivateRoute = ({children}) => {
+    const {user, loadding} = useContext(authContext)
 
-    const {user} = useContext(authContext)
+    if(loadding) {
+        return <div className="flex justify-center items-center w-full h-screen" >
+            <span className="loading loading-bars loading-lg"></span>
+        </div>
+    }
 
     if(user) {
         return children

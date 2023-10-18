@@ -86,7 +86,7 @@ const Navber = () => {
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end gap-3">
-        {user && <h1>{user?.displayName}</h1>}
+        {user ? <h1>{user?.displayName}</h1> : ""}
           <div className="w-10">
             <img className="rounded-full" src={user ? user?.photoURL : userPhoto} />
           </div>

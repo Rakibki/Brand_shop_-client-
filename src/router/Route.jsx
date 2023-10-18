@@ -8,7 +8,7 @@ import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import AddProduct from "../pages/addProduct/AddProduct";
 import MyCard from "../pages/myCard/MyCard";
-
+import PrivateRoute from "../router/PrivateRoute"
 
   const router = createBrowserRouter([
     {
@@ -30,7 +30,7 @@ import MyCard from "../pages/myCard/MyCard";
         },
         {
           path: "/addProduct",
-          element: <AddProduct />
+          element: <PrivateRoute> <AddProduct /> </PrivateRoute>
         },
         {
           path: "/myCard",

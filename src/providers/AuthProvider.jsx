@@ -5,23 +5,28 @@ import auth from "../firebase/firebase.confic"
 export const authContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({ name: "king" }) 
+  const [user, setUser] = useState(null) 
+  const [loadding, setLoadding] = useState(true)
 
   const createUser = (email, password) => {
+    setLoadding(true)
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
   const loginUser = (email, password) => {
+    setLoadding(true)
     return signInWithEmailAndPassword(auth, email, password)
   }
 
   const googleProvider = new GoogleAuthProvider();
   const loginWithGoogle = () => {
+    setLoadding(true)
     return signInWithPopup(auth, googleProvider)
   }
 
   const githubProvider = new GithubAuthProvider();
   const loginWithGithub = () => {
+    setLoadding(true)
     return signInWithPopup(auth, githubProvider)
   }
 
@@ -30,13 +35,14 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const disconnent = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
+      setLoadding(false)
     })
     return () =>{
       disconnent()
     }
   })
 
-  const userInfo = {user, createUser, loginUser, createUser, loginWithGoogle, loginWithGithub}
+  const userInfo = {user, loadding, createUser, loginUser, createUser, loginWithGoogle, loginWithGithub}
    return (
     <authContext.Provider value={userInfo}>
         {children}

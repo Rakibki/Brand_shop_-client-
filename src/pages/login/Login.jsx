@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -6,14 +6,19 @@ import { authContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const {loginUser, loginWithGoogle, loginWithGithub} = useContext(authContext)
+  const [error, setError] = useState("")
 
     const handleLogin = (e) => {
+      setError("")
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
         loginUser(email, password)
         .then((res) => console.log(res.user))
-        .catch((e) => console.log(e.message))
+        .catch((e) => {
+          console.log(e.message)
+          setError(e.message)
+        })
     }
 
     const handleLogInWithGoogle = () => {
@@ -59,6 +64,9 @@ const Login = () => {
               <BiLockAlt className="absolute text-xl top-3 right-3" />
             </div>
           </div>
+          {
+            error ? <p className="mt-3 text-red-600">{error}</p> : ""
+          }
           <button className="py-3 px-5 rounded-md w-full mt-3 font-medium hover:opacity-70 bg-[#e03737] text-white">
             {" "}
             Login{" "}
