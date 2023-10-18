@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { authContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const {loginUser, loginWithGoogle, loginWithGithub} = useContext(authContext)
 
     const handleLogin = (e) => {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
-        console.log(email, password);
+        loginUser(email, password)
+        .then((res) => console.log(res.user))
+        .catch((e) => console.log(e.message))
+    }
+
+    const handleLogInWithGoogle = () => {
+      loginWithGoogle()
+      .then((res) => console.log(res.user))
+      .then((e) => console.log(e.message))
+    }
+  
+    const handleLoginWithGithub = () => {
+      loginWithGithub()
+      .then((res) => console.log(res.user))
+      .then((e) => console.log(e.message))
     }
 
   return (
@@ -55,13 +71,13 @@ const Login = () => {
           <div className="flex justify-center">
             <div className="flex gap-3">
               <button
-                // onClick={hangleGithubLogin}
+                onClick={handleLoginWithGithub}
                 className="bg-[#f7f7f7] px-3 py-2 text-black"
               >
                 Github
               </button>
               <button
-                // onClick={handleGoogleLogin}
+                onClick={handleLogInWithGoogle}
                 className="bg-[#db4437] px-3 py-2 text-white"
               >
                 Google

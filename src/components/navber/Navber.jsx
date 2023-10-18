@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import user from "../../assets/images/user.png";
+import userPhoto from "../../assets/images/user.png";
+import { authContext } from "../../providers/AuthProvider";
+import { signOut } from "firebase/auth";
+import auth from "../../firebase/firebase.confic";
 
 const Navber = () => {
   const navItems = (
@@ -16,7 +19,7 @@ const Navber = () => {
       </NavLink>
 
       <NavLink
-      to={"/addProduct"}
+        to={"/addProduct"}
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "font-semibold text-[#e03737]" : ""
         }
@@ -25,7 +28,7 @@ const Navber = () => {
       </NavLink>
 
       <NavLink
-      to={"/myCard"}
+        to={"/myCard"}
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "font-semibold text-[#e03737]" : ""
         }
@@ -34,6 +37,16 @@ const Navber = () => {
       </NavLink>
     </div>
   );
+
+  const { user } = useContext(authContext);
+
+  const handleLogOut = () => {
+    signOut(auth).then(() => {
+      console.log("Log Out");
+    }).catch((error) => {
+      console.log(error.message);
+    });
+  }
 
   return (
     <div className="w-full ">
@@ -73,12 +86,21 @@ const Navber = () => {
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end gap-3">
-          <div className="w-10 rounded-full">
-            <img src={user} />
+        {user && <h1>{user?.displayName}</h1>}
+          <div className="w-10">
+            <img className="rounded-full" src={user ? user?.photoURL : userPhoto} />
           </div>
-          <button className="py-2 px-5 font-medium hover:opacity-70 bg-[#e03737] text-white">
-            Login
-          </button>
+          {user ? (
+            <button onClick={handleLogOut} className="py-2 px-5 font-medium hover:opacity-70 bg-[#e03737] text-white">
+              Logout
+            </button>
+          ) : (
+            <Link to={"/login"}>
+              <button className="py-2 px-5 font-medium hover:opacity-70 bg-[#e03737] text-white">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
