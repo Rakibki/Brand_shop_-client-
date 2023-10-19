@@ -36,7 +36,8 @@ import ProductDetails from "../components/productDetails/ProductDetails";
         },
         {
           path: "/myCard",
-          element: <MyCard />
+          element: <MyCard />,
+          loader: () => fetch('http://localhost:5000/myProducts')
         },
         {
           path: "/brand/:name",
