@@ -9,7 +9,6 @@ const TrendingProducts = () => {
       .then((data) => setTrendingProducts(data));
   }, []);
 
-  console.log(TrendingProducts);
 
   return (
     <section className="my-16  px-6 py-2 md:px-10 lg:px-16">

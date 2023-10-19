@@ -12,15 +12,16 @@ import "./style.css";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
-import banner1 from "../../assets/images/slide-1.jpg";
-
 const Banner = () => {
+
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s, time, progress) => {
     progressCircle.current.style.setProperty("--progress", 1 - progress);
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
+
+
   return (
     <>
       <Swiper

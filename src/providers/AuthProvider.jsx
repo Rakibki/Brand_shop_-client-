@@ -30,7 +30,6 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, githubProvider)
   }
 
-  console.log(user);
 
   useEffect(() => {
     const disconnent = onAuthStateChanged(auth, (currentUser) => {

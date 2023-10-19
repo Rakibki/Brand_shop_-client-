@@ -1,6 +1,4 @@
-
 const AddProduct = () => {
-
   const handleAddProduct = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -10,9 +8,28 @@ const AddProduct = () => {
     const Rating = e.target.Rating.value;
     const ShortDescription = e.target.ShortDescription.value;
     const image = e.target.image.value;
+    const product = {
+      name,
+      BrandName,
+      Category,
+      Price,
+      Rating,
+      ShortDescription,
+      image,
+    };
 
-    console.log(name, BrandName, Category, Price, Rating, ShortDescription, image);
-
+    fetch("http://localhost:5000/products", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        e.target.reset()
+      });
   };
 
   return (
@@ -33,32 +50,6 @@ const AddProduct = () => {
             </div>
 
             <div className="mb-4 md:w-1/2">
-              <label htmlFor="BrandName">Brand Name</label> <br />
-              <div className="relative">
-                <input
-                  className="outline-none focus:border-[#e03737] border-2 w-full p-1.5 mt-1"
-                  type="text"
-                  id="BrandName"
-                  name="BrandName"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex gap-3">
-            <div className="mb-4 md:w-1/2">
-              <label htmlFor="Category">Category</label> <br />
-              <div className="relative">
-                <input
-                  className="outline-none focus:border-[#e03737] border-2 w-full p-1.5 mt-1"
-                  type="text"
-                  id="Category"
-                  name="Category"
-                />
-              </div>
-            </div>
-
-            <div className="mb-4 md:w-1/2">
               <label htmlFor="Price">Price</label> <br />
               <div className="relative">
                 <input
@@ -70,7 +61,6 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
-
 
           <div className="flex gap-3">
             <div className="mb-4 md:w-1/2">
@@ -95,6 +85,42 @@ const AddProduct = () => {
                   name="ShortDescription"
                 />
               </div>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <div className="mb-4 md:w-1/2">
+              <label htmlFor="ShortDescription">Category</label> <br />
+              <select
+                className="outline-none focus:border-[#e03737] border-2 w-full p-1.5 mt-1"
+                name="Category"
+                id="Category"
+              >
+                <option value="">Select</option>
+                <option value="phone">Phone</option>
+                <option value="computer">Computer</option>
+                <option value="Leplop">Leplop</option>
+                <option value="Smart Watches">Smart Watches</option>
+                <option value="Headphones">Headphones</option>
+              </select>
+            </div>
+
+            <div className="mb-4 md:w-1/2">
+              <label htmlFor="ShortDescription">Brand Name</label> <br />
+              <select
+                className="outline-none focus:border-[#e03737] border-2 w-full p-1.5 mt-1"
+                name="BrandName"
+                id="BrandName"
+              >
+                <option value="">Select</option>
+                <option value="sony">sony</option>
+                <option value="mircosoft">mircosoft</option>
+                <option value="canon">canon</option>
+                <option value="amazon">amazon</option>
+                <option value="sennheiser">sennheiser</option>
+                <option value="motorola">motorola</option>
+                <option value="sansung">sansung</option>
+              </select>
             </div>
           </div>
 

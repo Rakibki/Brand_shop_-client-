@@ -9,6 +9,7 @@ import Login from "../pages/login/Login";
 import AddProduct from "../pages/addProduct/AddProduct";
 import MyCard from "../pages/myCard/MyCard";
 import PrivateRoute from "../router/PrivateRoute"
+import BrandCollection from "../components/brandCollection/BrandCollection";
 
   const router = createBrowserRouter([
     {
@@ -35,6 +36,11 @@ import PrivateRoute from "../router/PrivateRoute"
         {
           path: "/myCard",
           element: <MyCard />
+        },
+        {
+          path: "/brand/:name",
+          element: <BrandCollection />,
+          loader: ({params}) => fetch(`http://localhost:5000/products/${params.name}`)
         }
       ]
     },
