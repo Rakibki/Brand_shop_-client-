@@ -76,7 +76,7 @@ const Navber = () => {
               {navItems}
             </ul>
           </div>
-          <div>
+          <div className="hidden md:block">
             <Link to={"/"}>
               <img src={logo} alt="Logo" />
             </Link>

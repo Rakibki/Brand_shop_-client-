@@ -13,14 +13,12 @@ import "./style.css";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const Banner = () => {
-
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s, time, progress) => {
     progressCircle.current.style.setProperty("--progress", 1 - progress);
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
-
 
   return (
     <>
@@ -39,9 +37,9 @@ const Banner = () => {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
-        
+
         <SwiperSlide>
-          <div className="relative w-full h-full" id="banner1">
+          <div className="relative" id="banner1">
             <div className="w-1/2 left-5 top-[30%] absolute">
               <h2 className="text-4xl mb-4 font-semibold">
                 Discovery And Explore Digital

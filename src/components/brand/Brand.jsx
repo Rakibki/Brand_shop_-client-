@@ -40,31 +40,31 @@ const Brand = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-            <div onClick={() => handleBrand("sony")} className="p-3 md:p-6 lg:p-8 border-2"><img src={brand1} alt="" /></div>
+            <div onClick={() => handleBrand("sony")} className="p-3 md:p-6 cursor-pointer hover:opacity-50 lg:p-8 border-2"><img src={brand1} alt="" /></div>
         </SwiperSlide>
 
         <SwiperSlide>
-            <div onClick={() => handleBrand('mircosoft')} className="p-3 md:p-6 lg:p-8 border-2"><img src={brand2} alt="" /></div>
+            <div onClick={() => handleBrand('mircosoft')} className="p-3 cursor-pointer hover:opacity-50 md:p-6 lg:p-8 border-2"><img src={brand2} alt="" /></div>
         </SwiperSlide>
 
         <SwiperSlide>
-            <div  onClick={() => handleBrand('canon')} className="p-8 border-2"><img src={brand3} alt="" /></div>
+            <div  onClick={() => handleBrand('canon')} className="p-3 cursor-pointer hover:opacity-50 md:p-6 lg:p-8 border-2"><img src={brand3} alt="" /></div>
         </SwiperSlide>
 
         <SwiperSlide>
-            <div  onClick={() => handleBrand('amazon')} className="p-3 md:p-6 lg:p-8 border-2"><img src={brand4} alt="" /></div>
+            <div  onClick={() => handleBrand('amazon')} className="p-3 cursor-pointer hover:opacity-50 md:p-6 lg:p-8 border-2"><img src={brand4} alt="" /></div>
         </SwiperSlide>
 
         <SwiperSlide>
-            <div  onClick={() => handleBrand('sansung')} className="p-3 md:p-6 lg:p-8 border-2"><img src={brand5} alt="" /></div>
+            <div  onClick={() => handleBrand('sansung')} className="p-3 cursor-pointer hover:opacity-50 md:p-6 lg:p-8 border-2"><img src={brand5} alt="" /></div>
         </SwiperSlide>
 
         <SwiperSlide>
-            <div  onClick={() => handleBrand('sennheiser')} className="p-3 md:p-6 lg:p-8 border-2"><img src={brand6} alt="" /></div>
+            <div  onClick={() => handleBrand('sennheiser')} className="p-3 cursor-pointer hover:opacity-50 md:p-6 lg:p-8 border-2"><img src={brand6} alt="" /></div>
         </SwiperSlide>
 
         <SwiperSlide>
-            <div onClick={() => handleBrand('motorola')} className="p-3 md:p-6 lg:p-8 border-2"><img src={brand7} alt="" /></div>
+            <div onClick={() => handleBrand('motorola')} className="p-3 cursor-pointer hover:opacity-50 md:p-6 lg:p-8 border-2"><img src={brand7} alt="" /></div>
         </SwiperSlide>
 
       </Swiper>

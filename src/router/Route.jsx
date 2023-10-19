@@ -37,7 +37,7 @@ import ProductUpdate from "../components/productUpdate/ProductUpdate";
         },
         {
           path: "/myCard",
-          element: <MyCard />,
+          element: <PrivateRoute> <MyCard /> </PrivateRoute>,
           loader: () => fetch('http://localhost:5000/myProducts')
         },
         {
@@ -47,12 +47,12 @@ import ProductUpdate from "../components/productUpdate/ProductUpdate";
         },
         {
           path: "/product/:productId",
-          element: <ProductDetails />,
+          element: <PrivateRoute> <ProductDetails /> </PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/product/${params.productId}`) 
         },
         {
           path: "/products/:id",
-          element: <ProductUpdate />,
+          element: <PrivateRoute> <ProductUpdate /></PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
         }
       ]

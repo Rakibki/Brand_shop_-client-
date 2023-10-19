@@ -12,13 +12,15 @@ const MyCard = () => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      const filterProducts = myCard.filter((item) => item._id !== id)
+      setMyCard(filterProducts)
     })
   }
 
   return (
     <div className=" px-6 py-2 md:px-10 lg:px-16">
-      <h1>My Card</h1>
-
+      {myCard.length > 0 ? <h1>My Card</h1> : ""}
+      {myCard.length > 0 ? "" : <h1>There are no products on my card</h1>}
       {myCard?.map((item) => {
         return (
           <div className="grid items-center mb-6 grid-cols-4">
