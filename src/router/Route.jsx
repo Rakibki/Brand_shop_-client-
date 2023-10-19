@@ -11,6 +11,7 @@ import MyCard from "../pages/myCard/MyCard";
 import PrivateRoute from "../router/PrivateRoute"
 import BrandCollection from "../components/brandCollection/BrandCollection";
 import ProductDetails from "../components/productDetails/ProductDetails";
+import ProductUpdate from "../components/productUpdate/ProductUpdate";
 
   const router = createBrowserRouter([
     {
@@ -48,6 +49,11 @@ import ProductDetails from "../components/productDetails/ProductDetails";
           path: "/product/:productId",
           element: <ProductDetails />,
           loader: ({params}) => fetch(`http://localhost:5000/product/${params.productId}`) 
+        },
+        {
+          path: "/products/:id",
+          element: <ProductUpdate />,
+          loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
         }
       ]
     },
