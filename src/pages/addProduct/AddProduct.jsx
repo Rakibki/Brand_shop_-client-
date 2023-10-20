@@ -1,3 +1,6 @@
+import swal from 'sweetalert';
+
+
 const AddProduct = () => {
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -18,7 +21,7 @@ const AddProduct = () => {
       image,
     };
 
-    fetch("http://localhost:5000/products", {
+    fetch("https://server-rakibki.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -29,6 +32,12 @@ const AddProduct = () => {
       .then((data) => {
         console.log(data)
         e.target.reset()
+        swal({
+          title: "Good job!",
+          text: "Product added successfully!",
+          icon: "success",
+          button: "Aww yiss!",
+        });
       });
   };
 
@@ -92,7 +101,7 @@ const AddProduct = () => {
             <div className="mb-4 md:w-1/2">
               <label htmlFor="ShortDescription">Category</label> <br />
               <select
-                className="outline-none focus:border-[#e03737] border-2 w-full p-1.5 mt-1"
+                className="outline-none w-full focus:border-[#e03737] border-2 p-1.5 mt-1"
                 name="Category"
                 id="Category"
               >

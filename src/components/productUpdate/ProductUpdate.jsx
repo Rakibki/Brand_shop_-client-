@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import swal from 'sweetalert';
 
 const ProductUpdate = () => {
   const updatedProdoct = useLoaderData();
@@ -22,7 +23,7 @@ const ProductUpdate = () => {
       image,
     };
 
-      fetch(`http://localhost:5000/products/${updatedProdoct._id}`, {
+      fetch(`https://server-rakibki.vercel.app/products/${updatedProdoct._id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -33,6 +34,12 @@ const ProductUpdate = () => {
         .then((data) => {
           console.log(data)
           e.target.reset()
+          swal({
+            title: "Good job!",
+            text: "Product update completed successfully!",
+            icon: "success",
+            button: "Aww yiss!",
+          });
         });
   };
 

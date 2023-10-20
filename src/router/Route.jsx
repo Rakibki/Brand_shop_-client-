@@ -38,22 +38,22 @@ import ProductUpdate from "../components/productUpdate/ProductUpdate";
         {
           path: "/myCard",
           element: <PrivateRoute> <MyCard /> </PrivateRoute>,
-          loader: () => fetch('http://localhost:5000/myProducts')
+          loader: () => fetch('https://server-rakibki.vercel.app/myProducts')
         },
         {
           path: "/brand/:name",
           element: <BrandCollection />,
-          loader: ({params}) => fetch(`http://localhost:5000/products/${params.name}`)
+          loader: ({params}) => fetch(`https://server-rakibki.vercel.app/products/${params.name}`)
         },
         {
           path: "/product/:productId",
           element: <PrivateRoute> <ProductDetails /> </PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:5000/product/${params.productId}`) 
+          loader: ({params}) => fetch(`https://server-rakibki.vercel.app/product/${params.productId}`) 
         },
         {
           path: "/products/:id",
           element: <PrivateRoute> <ProductUpdate /></PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
+          loader: ({params}) => fetch(`https://server-rakibki.vercel.app/product/${params.id}`)
         }
       ]
     },

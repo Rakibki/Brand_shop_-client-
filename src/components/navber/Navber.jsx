@@ -1,14 +1,21 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
 import userPhoto from "../../assets/images/user.png";
+import logo from "../../assets/images/logo.png";
+import log2 from "../../assets/images/logo-light.png";
 import { authContext } from "../../providers/AuthProvider";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase/firebase.confic";
 
 const Navber = () => {
+  const { setIsDark, isDark, user } = useContext(authContext);
+
+  const handleDark = () => {
+    setIsDark(!isDark)
+  }
+
   const navItems = (
-    <div className="flex flex-col lg:flex-row text-[#334155] text-base gap-6">
+    <div className={`flex flex-col ${isDark ? "bg-black text-white" : "bg-white"} lg:flex-row text-[#334155] text-base gap-6`}>
       <NavLink
         to={"/"}
         className={({ isActive, isPending }) =>
@@ -38,19 +45,20 @@ const Navber = () => {
     </div>
   );
 
-  const { user } = useContext(authContext);
 
   const handleLogOut = () => {
-    signOut(auth).then(() => {
-      console.log("Log Out");
-    }).catch((error) => {
-      console.log(error.message);
-    });
-  }
+    signOut(auth)
+      .then(() => {
+        console.log("Log Out");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div className="w-full ">
-      <div className="navbar px-6 py-2 md:px-10 lg:px-16 bg-base-100">
+      <div className={`navbar  px-6 py-2 ${isDark ? "bg-black text-white" : "bg-white"} md:px-10 lg:px-16`}>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -78,7 +86,9 @@ const Navber = () => {
           </div>
           <div className="hidden md:block">
             <Link to={"/"}>
-              <img src={logo} alt="Logo" />
+              {
+                isDark ? <img src={log2} alt="Logo" /> : <img src={logo} alt="Logo" />
+              }
             </Link>
           </div>
         </div>
@@ -86,12 +96,21 @@ const Navber = () => {
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end gap-3">
-        {user ? <h1>{user?.displayName}</h1> : ""}
+          {user ? <h1>{user?.displayName}</h1> : ""}
           <div className="w-10">
-            <img className="rounded-full" src={user ? user?.photoURL : userPhoto} />
+            <img
+              className="rounded-full"
+              src={user ? user?.photoURL : userPhoto}
+            />
           </div>
+
+          <input onChange={handleDark} type="checkbox" className="toggle"  />
+
           {user ? (
-            <button onClick={handleLogOut} className="py-2 px-5 font-medium hover:opacity-70 bg-[#e03737] text-white">
+            <button
+              onClick={handleLogOut}
+              className="py-2 px-5 font-medium hover:opacity-70 bg-[#e03737] text-white"
+            >
               Logout
             </button>
           ) : (
